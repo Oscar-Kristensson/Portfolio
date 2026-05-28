@@ -1,0 +1,61 @@
+:root {
+  --color-bg: #ffffff;
+  --color-text: #f3f4f6;
+  --color-text-lowEmp: #dddee5;
+  --color-accent1: #00b9ff;
+  --color-accent2: #ff00fe;
+  --gradient-accent: linear-gradient(45deg, var(--color-accent1), var(--color-accent2));
+  --background-color1: #171717;
+  --font: 'Open Sans', sans-serif;
+  --text-size-large: 3rem;
+  --text-size-heading: 1.5rem;
+  --text-weight-heading: 700;
+  --margin-standard: 16px;
+  --margin-mobile: 32px;
+  --padding-standard: 32px;
+  --padding-standard-large: 64px;
+}
+
+
+
+body, head {
+    background-color: var(--background-color1);
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+
+/* Gradient animation */
+@keyframes gradientAnimation1 {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+
+@keyframes glideIn1 {
+  0% {
+    transform: translateX(-70px);
+    filter: blur(10px);
+  }
+
+
+
+  100% {
+    transform: translateX(0px);
+    filter: blur(0px);
+
+  }
+}

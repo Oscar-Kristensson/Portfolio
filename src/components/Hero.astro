@@ -1,0 +1,120 @@
+---
+const { name, description, img } = Astro.props;
+---
+<section class="hero">
+  <div class="first-line">
+    <div class="hello">Hej!</div>
+    <div class="am">Det är jag som är</div>
+
+  </div>
+  <div class="main">{name}</div>
+  <div class="description">- {description}</div>
+  <div class="img">
+    <img src={img} />
+  </div>
+</section>
+
+<style>
+  .hero {
+    background-color: #0a0a0a;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-areas:
+      "other img"
+      "hello img"
+      "main img"
+      "description img";
+    padding: var(--padding-standard-large);
+
+    justify-content: center;
+  }
+
+
+  
+
+
+
+  .hero .first-line {
+    display: flex;
+    align-items: end;
+    grid-area: hello;
+    margin-bottom: 4px;
+  }
+
+  .hero .img {
+    display: flex;
+    grid-area: img;
+    width: 100%;
+    max-width: 800px;
+    justify-content: center;
+    
+ 
+  }
+  .hero .img img {
+    height: 200px;
+
+  }
+
+  .hero .hello {
+    grid-area: hello;
+    color: var(--color-text);
+    margin-right: var(--margin-standard);
+    font-size: var(--text-size-heading);
+  }
+
+  .hero .am {
+    grid-area: am;
+    color: var(--color-text-lowEmp);
+  }
+
+  .hero .main {
+    grid-area: main;
+    color: var(--color-text);
+    font-size: var(--text-size-large);
+    font-weight: var(--text-weight-heading);
+    background: var(--gradient-accent);
+    width: fit-content;
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 4px;
+
+
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+
+
+    animation: glideIn1 500ms ease-in-out;
+
+
+
+
+    
+
+
+  }
+
+  .hero .description {
+    grid-area: description;
+    color: var(--color-text-lowEmp);
+    
+  }
+
+  @media (max-width: 600px) {
+    .hero {
+      grid-template-areas: 
+      "img"
+      "hello"
+      "main"
+      "description";
+    }
+
+    .hero .img {
+      margin-bottom: var(--margin-mobile);
+    }
+    
+  }
+
+  
+</style>
