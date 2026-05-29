@@ -15,6 +15,9 @@ const sectionId = crypto.randomUUID();
       <img src={img} />
     </div>
   </div>
+  <div class="arrow-button">
+    <img src="icon.svg" alt="">
+  </div>
 </section>
 
 <style>
@@ -33,6 +36,7 @@ const sectionId = crypto.randomUUID();
 
 
   .hero {
+    position: relative;
     height: 100vh;
     background-color: #0a0a0a;
     justify-content: center;
@@ -41,10 +45,25 @@ const sectionId = crypto.randomUUID();
 
   }
 
+  .arrow-button {
+    position: absolute;
+    bottom: 32px;
 
-  
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: var(--background-color1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px var(--background-color3) solid;
+    opacity: 0;
+    cursor: pointer;
+  }
 
-
+  .arrow-button img {
+    width: 32px;
+  }
 
   .hero .first-line {
     display: flex;
@@ -142,6 +161,41 @@ const sectionId = crypto.randomUUID();
     animation: glideInTextLeft 800ms ease-in forwards;
     animation-delay: 2000ms;
   }
+  
+@keyframes arrowButtonAnimation {
+  0% {
+    transform: translateY(-100px);
+    filter: blur(10px);
+    opacity: 0;
+  }
+
+  50% {
+    transform: translateY(20px);
+    filter: blur(0px);
+
+  }
+
+  75% {
+    transform: translateY(-20px);
+    filter: blur(0px);
+
+  }
+
+  100% {
+    transform: translateY(0px);
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+
+  .hero.show .arrow-button {
+    animation: arrowButtonAnimation 500ms ease-out forwards;
+    animation-delay: 3000ms;
+  }
+
+
+
+
 
   
 </style>
@@ -159,4 +213,13 @@ const sectionId = crypto.randomUUID();
   });
 
   observer.observe(section);
+
+const arrowButton = document.querySelector(".arrow-button") 
+arrowButton.addEventListener("click", () => {
+  window.scrollBy({
+    top: 1000,
+    left: 0,
+    behavior: "smooth"
+  })
+})
 </script>

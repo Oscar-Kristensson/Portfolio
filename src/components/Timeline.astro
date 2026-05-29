@@ -1,0 +1,67 @@
+---
+
+import type { TimelineItem } from "../logic/structs.ts";
+
+interface Props {
+  items: TimelineItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="timeline">
+  {items.map((item) => (
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+
+      <div class="timeline-content">
+        <span class="timeline-date">{item.date}</span>
+        <h3>{item.title}</h3>
+        <p>{item.description}</p>
+      </div>
+    </div>
+  ))}
+</div>
+
+<style>
+.timeline {
+  position: relative;
+  margin: 2rem 0;
+  padding-bottom: 2rem;
+  border-bottom: 3px solid var(--color-text-lowEmp);
+  display: flex;
+  --height: 4px;:
+}
+
+
+.timeline-item {
+  position: relative;
+  margin-left: 2rem;
+}
+
+.timeline-dot {
+  position: absolute;
+  bottom: calc(-2.7rem);
+  left: 0.3rem;
+  width: 14px;
+  height: 14px;
+  background: var(--background-color1);
+  border-radius: 50%;
+  border: 3px solid var(--color-text-lowEmp);
+}
+
+
+.timeline-content {
+  background: var(--background-color1);
+  border: 2px solid rgb(38, 38, 38);
+  padding: 1rem;
+  border-radius: 10px;
+  width: 250px;
+  height: 150px;
+}
+
+.timeline-date {
+  font-size: 0.85rem;
+  color: var(--color-text-lowEmp);
+}
+</style>

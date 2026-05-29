@@ -14,3 +14,11 @@ export class CardDataItem {
 
     ) {}
 }
+
+
+
+export interface TimelineItem {
+  date: string;
+  title: string;
+  description: string;
+}
