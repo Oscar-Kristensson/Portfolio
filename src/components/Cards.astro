@@ -1,5 +1,5 @@
 ---
-import { CardData } from "../logic/structs.ts"
+import { CardData, CardDataItem } from "../logic/structs.ts"
 
 interface Props {
   items: CardData[];
@@ -10,45 +10,101 @@ const { items } = Astro.props as Props;
 
 ---
 
-<div class="scroll-container">
-  {items.map((item) => (
-    <div class="card">
+<section class="scroll-container">
+  {items.map((item: CardData, index) => (
+    <div class="card" style={`--delay: ${index * 120}ms`}>
       <h3 class="title">{item.title}</h3>
-      <p class="description">{item.items}</p>
+      <ul class="custom-list">
+        {item.items.map(item => (
+          <li>{item.description}</li>
+        ))}
+      </ul>
     </div>
   ))}
 </div>
 
 <style>
   .scroll-container {
-    height: 400px;            /* key: fixed or max height */
+    /*height: 250px;            /* key: fixed or max height */
     overflow-y: auto;         /* enables vertical scrolling */
     display: flex;
-    flex-direction: column;
-    gap: 12px;
+    flex-direction: row;
+    gap: 64px;
 
-    padding: 12px;
-    border: 1px solid #e5e5e5;
-    border-radius: 12px;
+    padding: var(--padding-standard);
+    justify-content: center;
+
   }
 
   .card {
     padding: 16px;
-    border-radius: 10px;
-    background: white;
-    border: 1px solid #ddd;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    width: 350px;
+    background-color: var(--background-color1);
+    filter: drop-shadow(0 0 10px #00bbff7e);
+    border-radius: var(--margin-standard);
+    opacity: 0;
+
+
   }
 
-  .title {
-    margin: 0 0 6px 0;
-    font-size: 16px;
-    font-weight: 600;
+  .card:nth-child(2n) {
+    filter: drop-shadow(0 0 10px #ff00ff7e);
   }
 
-  .description {
-    margin: 0;
-    font-size: 14px;
-    color: #555;
+  .card .title {
+    color: var(--color-text);
+    text-align: center;
+    font-weight: var(--text-weight-heading2);
+    margin-bottom: 32px;
   }
+
+  .card .custom-list {
+    color: var(--color-text)
+  }
+
+
+
+  /* Stagger animation */
+
+  .card.show {
+    animation: staggerAnimation 500ms ease-out forwards;
+    animation-delay: var(--delay);
+
+  }
+
+  .card.show:not() {
+    animation: staggerAnimation 500ms ease-out backwards;
+  }
+
+
+  @keyframes staggerAnimation {
+    0% {
+      transform: translateX(-100px);
+      opacity: 0;
+    }
+    100% {
+      transform: translate(0px);
+      opacity: 1;
+    }
+  }
+
+
+
+
 </style>
+
+<script defer>
+ const cards = document.querySelectorAll(".card");
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+      } else {
+        entry.target.classList.remove("show");
+      }
+    });
+  });
+
+  cards.forEach((card) => observer.observe(card));
+</script>

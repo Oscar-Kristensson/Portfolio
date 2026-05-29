@@ -1,6 +1,41 @@
 ---
 import '../styles/global.css';
 import Hero from '../components/Hero.astro';
+import Cards from '../components/Cards.astro';
+import { CardData } from '../logic/structs';
+import { CardDataItem } from '../logic/structs';
+
+
+
+
+
+
+
+function getCards(): CardData[] {
+  return [
+    { title: "Programmering", items: [
+      { description: "Webutveckling i Javascript/Typescript" }, 
+      { description: "SQL databaser i Rust" }, 
+      { description: "Grafik och spel i C++ /Python" }, 
+    ] },
+    { title: "Digitalt skapande", items: [
+      { description: "Grundläggande videoredigering, filming och fotografering" }, 
+      { description: "3D modellering i Blender" }, 
+      { description: "Vektorgrafik för att göra infografik" }, 
+    ] },
+    { title: "Naturvetenskap", items: [
+      { description: "Läst fysik 1 och 2" }, 
+      { description: "Läst matematik 5 och specialsering" }, 
+    ] },
+  ];
+}
+
+
+
+
+
+
+
 ---
 <html lang="en">
   <head>
@@ -15,6 +50,79 @@ import Hero from '../components/Hero.astro';
   </head>
   <body>
     
-    <Hero name="Oscar Kristensson" description="Glad och nyfiken student" img="oscar.png" />
+  <Hero name="Oscar Kristensson" description="Glad och nyfiken student" img="oscar.png" />
+
+  <Cards items={getCards()}/>
+
+
+  <p style="height: 300vh;"></p>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+
+
+
+
   </body>
 </html>

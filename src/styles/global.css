@@ -6,10 +6,12 @@
   --color-accent2: #ff00fe;
   --gradient-accent: linear-gradient(45deg, var(--color-accent1), var(--color-accent2));
   --background-color1: #171717;
+  --background-color2: #1e1e1e;
   --font: 'Open Sans', sans-serif;
   --text-size-large: 3rem;
   --text-size-heading: 1.5rem;
-  --text-weight-heading: 700;
+  --text-weight-heading1: 700;
+  --text-weight-heading2: 500;
   --margin-standard: 16px;
   --margin-mobile: 32px;
   --padding-standard: 32px;
@@ -25,6 +27,10 @@ body, head {
     padding: 0;
 }
 
+section:nth-child(2n) {
+  background-color: var(--background-color1);
+  
+}
 
 
 
@@ -58,4 +64,113 @@ body, head {
     filter: blur(0px);
 
   }
+}
+
+
+@keyframes glideInTextAbove {
+  0% {
+    transform: translateY(-20px);
+    filter: blur(10px);
+    opacity: 0;
+  }
+
+
+
+  100% {
+    transform: translateY(0px);
+    filter: blur(0px);
+    opacity: 1;
+
+  }
+}
+
+
+
+@keyframes glideInTextLeft {
+  0% {
+    transform: translateX(-50px);
+    filter: blur(10px);
+    opacity: 0;
+  }
+
+
+
+  100% {
+    transform: translateX(0px);
+    filter: blur(0px);
+    opacity: 1;
+
+  }
+}
+
+
+
+
+/*
+------------------ Scrollbar ------------------ 
+*/
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #6b7280 #111827;
+}
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #111827;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    #6b7280,
+    #4b5563
+  );
+  border-radius: 999px;
+  border: 2px solid #111827;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    #9ca3af,
+    #6b7280
+  );
+}
+
+::-webkit-scrollbar-corner {
+  background: #111827;
+}
+
+
+
+.custom-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.custom-list li {
+  position: relative;
+  padding-left: 28px;
+  margin-bottom: 24px;
+}
+
+.custom-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 4px;
+
+  width: 16px;
+  height: 16px;
+
+  background-image: url("bulletIcon.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
 }

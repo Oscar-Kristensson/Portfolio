@@ -1,22 +1,24 @@
 ---
 const { name, description, img } = Astro.props;
+const sectionId = crypto.randomUUID();
 ---
-<section class="hero">
-  <div class="first-line">
-    <div class="hello">Hej!</div>
-    <div class="am">Det är jag som är</div>
-
-  </div>
-  <div class="main">{name}</div>
-  <div class="description">- {description}</div>
-  <div class="img">
-    <img src={img} />
+<section class="hero" id={sectionId}>
+  <div class="content">
+    <div class="first-line">
+      <div class="hello">Hej!</div>
+      <div class="am">Det är jag som är</div>
+  
+    </div>
+    <div class="main">{name}</div>
+    <div class="description">- {description}</div>
+    <div class="img">
+      <img src={img} />
+    </div>
   </div>
 </section>
 
 <style>
-  .hero {
-    background-color: #0a0a0a;
+  .hero .content {
     display: grid;
     grid-template-columns: auto auto;
     grid-template-areas:
@@ -27,6 +29,16 @@ const { name, description, img } = Astro.props;
     padding: var(--padding-standard-large);
 
     justify-content: center;
+  }
+
+
+  .hero {
+    height: 100vh;
+    background-color: #0a0a0a;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
   }
 
 
@@ -62,16 +74,19 @@ const { name, description, img } = Astro.props;
     font-size: var(--text-size-heading);
   }
 
+
+
   .hero .am {
     grid-area: am;
     color: var(--color-text-lowEmp);
+    opacity: 0;
   }
 
   .hero .main {
     grid-area: main;
     color: var(--color-text);
     font-size: var(--text-size-large);
-    font-weight: var(--text-weight-heading);
+    font-weight: var(--text-weight-heading1);
     background: var(--gradient-accent);
     width: fit-content;
 
@@ -83,21 +98,13 @@ const { name, description, img } = Astro.props;
     background-clip: text;
     color: transparent;
     display: inline-block;
-
-
-    animation: glideIn1 500ms ease-in-out;
-
-
-
-
-    
-
-
+    opacity: 0;
   }
 
   .hero .description {
     grid-area: description;
     color: var(--color-text-lowEmp);
+    opacity: 0;
     
   }
 
@@ -116,5 +123,40 @@ const { name, description, img } = Astro.props;
     
   }
 
+/* Animations */
+  .hero.show .hello {
+    animation: glideInTextAbove 500ms ease-in forwards;
+  }
+
+  .hero.show .am {
+    animation: glideInTextLeft 800ms ease-in forwards;
+    animation-delay: 100ms;
+  }
+  
+  .hero.show .main {
+    animation: glideInTextLeft 800ms ease-in forwards;
+    animation-delay: 800ms;
+  }
+
+  .hero.show .description {
+    animation: glideInTextLeft 800ms ease-in forwards;
+    animation-delay: 2000ms;
+  }
+
   
 </style>
+<script defer define:vars={{ sectionId }}>
+  const section = document.querySelector("section");
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+      } else {
+        entry.target.classList.remove("show");
+      }
+    })
+  });
+
+  observer.observe(section);
+</script>
