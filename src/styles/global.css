@@ -192,3 +192,19 @@ section.centered {
   background-size: contain;
   background-repeat: no-repeat;
 }
+
+
+
+
+
+
+  @keyframes staggerAnimation {
+    0% {
+      transform: translateX(-100px);
+      opacity: 0;
+    }
+    100% {
+      transform: translate(0px);
+      opacity: 1;
+    }
+  }

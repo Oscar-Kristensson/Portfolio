@@ -7,10 +7,12 @@ interface Props {
 }
 
 const { items } = Astro.props;
+const sectionId = crypto.randomUUID();
+
 ---
 <div class="timeline">
-  {items.map((item) => (
-    <div class="timeline-item">
+  {items.map((item, index) => (
+    <div class="timeline-item" style={`--delay: ${index * 120}ms`}>
       <div class="timeline-dot"></div>
 
       <div class="timeline-content">
@@ -37,6 +39,7 @@ const { items } = Astro.props;
 .timeline-item {
   position: relative;
   margin-left: 2rem;
+  opacity: 0;
 }
 
 .timeline-dot {
@@ -93,4 +96,30 @@ const { items } = Astro.props;
 }
 
 
+  /* Stagger animation */
+
+  .timeline-item.show {
+    animation: staggerAnimation 500ms ease-out forwards;
+    animation-delay: var(--delay);
+
+  }
+
+
 </style>
+
+<script defer define:vars={{ sectionId }}>
+ const items = document.querySelectorAll(".timeline-item");
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+        console.log("Show")
+      } else {
+        entry.target.classList.remove("show");
+      }
+    });
+  });
+
+  items.forEach((item) => observer.observe(item));
+</script>
