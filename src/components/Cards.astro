@@ -89,7 +89,17 @@ const { items } = Astro.props as Props;
   }
 
 
+@media (max-width: 600px) {
+  .scroll-container {
+    flex-direction: column;
+  }
 
+  .card {
+    max-width: 80vw;
+    overflow-y: none;
+  }
+    
+}
 
 </style>
 
