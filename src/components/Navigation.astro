@@ -1,0 +1,31 @@
+---
+import { base } from 'astro:config/client';
+
+---
+<nav class="nav-bar">
+  <a href={base}>Hem</a>
+  <a href={base + "/programming"}>About</a>
+  <a href="/blog/">Blog</a>
+</nav>
+
+<style>
+  .nav-bar {
+    display: flex;
+    padding: 16px;
+    background-color: rgb(39, 39, 39);
+    gap: 16px;
+    justify-content: flex-end;
+    padding-right: 32px;
+    position: absolute;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .nav-bar a {
+    color: var(--color-text-lowEmp)
+  }
+</style>
+
+

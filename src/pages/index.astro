@@ -7,7 +7,7 @@ import { CardDataItem } from '../logic/structs';
 import Timeline from '../components/Timeline.astro';
 
 import { base } from 'astro:config/client';
-
+import Navigation from '../components/Navigation.astro';
 
 
 
@@ -77,6 +77,8 @@ const workTimelineItems = [
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
   </head>
   <body>
+
+  <Navigation />
     
   <Hero name="Oscar Kristensson" description="Glad och nyfiken student" img={base + "/oscar.png"} />
 
