@@ -208,3 +208,62 @@ section.centered {
       opacity: 1;
     }
   }
+
+
+
+
+
+.standard-button {
+  background-color: var(--background-color3);
+
+  border-radius: 16px;
+  padding: 16px;
+  outline: none;
+  border: none;
+  font-size: 1rem;
+  color: var(--color-text-lowEmp);
+  width: 200px;
+  cursor: pointer;
+  transition: background-position 1000ms ease-in-out;
+  font-weight: 600;
+  transform: translateZ(0);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+
+.standard-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    45deg,
+    var(--color-accent1),
+    var(--color-accent2)
+  );
+  opacity: 0;
+  transition: opacity 500ms ease-in-out;
+  border-radius: 16px;
+}
+
+.standard-button:hover::before {
+  opacity: 1;
+}
+
+.standard-button > * {
+  position: relative;
+  z-index: 1;
+}
+
+.standard-button .icon {
+  margin-left: 16px;
+  transform: none;
+  transition: all 250ms ease-in-out;
+}
+.standard-button:hover .icon {
+  margin-left: 16px;
+  transform: translateX(10px);
+}

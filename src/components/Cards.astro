@@ -1,6 +1,10 @@
 ---
 import { CardData, CardDataItem } from "../logic/structs.ts"
 
+import { base } from 'astro:config/client';
+
+import Button from "../components/Button.astro"
+
 interface Props {
   items: CardData[];
 }
@@ -19,6 +23,8 @@ const { items } = Astro.props as Props;
             <li>{item.description}</li>
           ))}
         </ul>
+        <Button icon={base + "/arrow.svg"} link={item.link}/>
+        
       </div>
     ))}
   
@@ -50,8 +56,15 @@ const { items } = Astro.props as Props;
     filter: drop-shadow(0 0 10px #00bbff7e);
     border-radius: var(--margin-standard);
     opacity: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
 
+  }
+  .card :global(.standard-button) {
+    margin-top: auto;
+    margin-bottom: 16px;
   }
 
   .card:nth-child(2n) {
