@@ -1,6 +1,8 @@
 ---
 const { name, description, img } = Astro.props;
 const sectionId = crypto.randomUUID();
+import { base } from 'astro:config/client';
+
 ---
 <section class="hero" id={sectionId}>
   <div class="content">
@@ -16,7 +18,7 @@ const sectionId = crypto.randomUUID();
     </div>
   </div>
   <div class="arrow-button">
-    <img src="icon.svg" alt="">
+    <img src={base + "/icon.svg"} alt="">
   </div>
 </section>
 
