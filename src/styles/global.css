@@ -188,7 +188,7 @@ section.centered {
   width: 16px;
   height: 16px;
 
-  background-image: url("bulletIcon.svg");
+  background-image: url("/Portfolio/bulletIcon.svg");
   background-size: contain;
   background-repeat: no-repeat;
 }
