@@ -1,0 +1,80 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  heading: string;
+  ghURL: string,
+  previewURL?: string,
+}
+
+const { src, alt, heading, ghURL, previewURL } = Astro.props;
+
+import Button from "../components/Button.astro"
+import { base } from 'astro:config/client';
+
+---
+
+<div class="project">
+  <img src={src} alt={alt} />
+  <h3 class="heading">{heading}</h3>
+
+  <div class="content">
+    <slot />
+  </div>
+  <div class="panel">
+    <div class="buttons">
+      <Button icon={base + "/vendor/ghLogo.svg"} link={ghURL} smallIcon = {true} >Se på GitHub</Button>
+      {previewURL && <Button icon={base + "/arrow.svg"} link={previewURL}>Testa här</Button>}
+    </div>
+  </div>
+</div>
+
+<style>
+  .project {
+    display: grid;
+    grid-template-areas:
+      "heading image"
+      "text image"
+      "panel panel";
+
+    grid-template-columns: 2fr 3fr;
+    max-width: 1200px;
+
+    
+  }
+
+  .project .heading {
+    margin-bottom: 0;
+  }
+
+  .project .buttons {
+    display: flex;
+    gap: 16px;
+  }
+  .project .panel {
+    display: flex;
+    gap: 16px;
+  }
+
+  .project .info {
+    display: flex;
+    width: max-content;
+  }
+
+
+  img {
+    width: 100%;
+    height: auto;
+    grid-area: image;
+  }
+
+  .content {
+    grid-area: text;
+    margin-right: 16px;
+    line-height: 2;
+  }
+
+
+
+
+</style>

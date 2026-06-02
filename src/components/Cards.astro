@@ -23,7 +23,9 @@ const { items } = Astro.props as Props;
             <li>{item.description}</li>
           ))}
         </ul>
-        <Button icon={base + "/arrow.svg"} link={item.link}/>
+        { item.link && 
+          <Button icon={base + "/arrow.svg"} link={item.link}>Läs mer</Button>
+        }
         
       </div>
     ))}

@@ -2,8 +2,32 @@
 import '../styles/global.css';
 
 import { base } from 'astro:config/client';
+import Project from '../components/Project.astro';
 
 import Base from "../layouts/Base.astro"
+import Cards from '../components/Cards.astro';
+import { CardData } from '../logic/structs';
+
+function getCards(): CardData[] {
+  return [
+    { title: "C++", items: [
+      { description: "Spelprogrammering med Raylib" }, 
+      { description: "Grundläggande GPU rendering med OpenGL" }, 
+    ] },
+    { title: "Python", items: [
+      { description: "Spelprogrammering med Pygame" }, 
+      { description: "Skripting" }, 
+    ] },
+    { title: "Webbutveckling", items: [
+      { description: "Statiska hemsidor" }, 
+      { description: "Utveckling av gränssnitt för såväl Tauri som Electron appar" }, 
+    ] },
+    { title: "Rust", items: [
+      { description: "Utveckling av Tauri appar" }, 
+      { description: "Hantering av databaser med rusqlite" }, 
+    ] },
+  ];
+}
 
 
 
@@ -13,6 +37,38 @@ import Base from "../layouts/Base.astro"
 
 
 <Base title="Home">
-  <h1>Welcome!</h1>
-  <p>This gets injected into the slot.</p>
+  <section class="bar centered">
+    <h2>Mina programmeringskunskaper</h2>
+    <Cards items={getCards()} />
+  </section>
+
+  <section class="bar centered">
+    <h2>Mina programmeringsprojekt</h2>
+
+    <Project
+      src={`${base}/pages/projects/chemistryCalculator.png`}
+      alt="Mountain landscape"
+      heading='ChemistryCalculator'
+      ghURL = "https://github.com/Oscar-Kristensson/ChemistryCalculator"
+      previewURL='https://oscar-kristensson.github.io/ChemistryCalculator/'
+
+    >
+      <p>
+        Kemikalkylatorn utvecklades för att underlätta och automatisera stökiometriska 
+        beräkningar på olika reaktioner. Kalkylatorn är mycket omtyck bland 
+        klasskamraterna då den underlättar vid kontroll och felsökning av beräkningar. 
+        Projektet är även min första riktiga statiska hemsida och under projektets 
+        gång lärde jag mig mycket om hemsidors struktur och javascript. Projektet är 
+        dessutom ett av mina favoritprojekt då det effektivt löste ett problem i kemin 
+        och jag har därmed haft mycket nytta av programmet.
+      </p>
+      <p>
+        Kalkylatorn bygger på en algoritm implementerad i javascript som undersöker om 
+        ett nytt värde kan bestämmas och fortsätter fylla i nya värden i tabellen så 
+        långt som möjligt.   
+      </p>
+    </Project>
+
+  </section>
+
 </Base>

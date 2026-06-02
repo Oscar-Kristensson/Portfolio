@@ -2,7 +2,7 @@ export class CardData {
     constructor(
         public title: string,
         public items: CardDataItem[],
-        public link: string,
+        public link?: string,
 
     ) {}
 }

@@ -270,6 +270,11 @@ section.centered {
   transform: none;
   transition: all 250ms ease-in-out;
 }
+
+.standard-button.smallIcon .icon {
+  width: 24px;
+}
+
 .standard-button:hover .icon {
   margin-left: 16px;
   transform: translateX(10px);
