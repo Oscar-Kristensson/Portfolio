@@ -38,6 +38,7 @@ section.bar {
   padding-bottom: 256px;
   padding-top: 256px;
   color: var(--color-text);
+  position: relative;
 }
 
 section.centered {

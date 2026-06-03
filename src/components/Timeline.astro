@@ -11,6 +11,7 @@ const sectionId = crypto.randomUUID();
 
 ---
 <div class="timeline">
+  <div class="scroll-container">
   {items.map((item, index) => (
     <div class="timeline-item" style={`--delay: ${index * 120}ms`}>
       <div class="timeline-dot"></div>
@@ -22,17 +23,27 @@ const sectionId = crypto.randomUUID();
       </div>
     </div>
   ))}
+  </div>
 </div>
 
 <style>
 .timeline {
   position: relative;
+
+  width: max-content;
+  max-width: 100%;
+  --height: 4px;
+  overflow-x: auto;
+
+}
+
+.timeline .scroll-container {
+  width: max-content;
+  display: flex;
+  border-bottom: 3px solid var(--color-text-lowEmp);
   margin: 2rem 0;
   padding-bottom: 2rem;
-  border-bottom: 3px solid var(--color-text-lowEmp);
-  display: flex;
-  width: max-content;
-  --height: 4px;
+
 }
 
 
@@ -70,10 +81,11 @@ const sectionId = crypto.randomUUID();
 
 
 @media (max-width: 600px) {
-  .timeline {
+  .timeline .scroll-container {
     flex-direction: column;
     border-bottom: none;
     border-left: 3px solid var(--color-text-lowEmp);
+    margin-left: 8px;
 
   }
 
