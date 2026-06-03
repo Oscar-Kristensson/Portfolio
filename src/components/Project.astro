@@ -1,32 +1,34 @@
 ---
 interface Props {
   src: string;
-  alt: string;
   heading: string;
   ghURL: string,
   previewURL?: string,
+  rightText?: boolean,
 }
 
-const { src, alt, heading, ghURL, previewURL } = Astro.props;
+const { src, heading, ghURL, previewURL, rightText = false } = Astro.props;
 
 import Button from "../components/Button.astro"
 import { base } from 'astro:config/client';
 
 ---
 
-<div class="project">
-  <img src={src} alt={alt} />
+<div class:list={["project", { rightText: rightText }]}>
   <h3 class="heading">{heading}</h3>
 
   <div class="content">
     <slot />
   </div>
+  <img src={src} alt={`An image of ${heading}`} />
+
   <div class="panel">
     <div class="buttons">
-      <Button icon={base + "/vendor/ghLogo.svg"} link={ghURL} smallIcon = {true} >Se på GitHub</Button>
-      {previewURL && <Button icon={base + "/arrow.svg"} link={previewURL}>Testa här</Button>}
+      <Button icon={base + "/vendor/ghLogo.svg"} link={ghURL} >Se på GitHub</Button>
+      {previewURL && <Button icon={base + "/arrow.svg"} link={previewURL} arrowIcon={true}>Testa här</Button>}
     </div>
   </div>
+
 </div>
 
 <style>
@@ -38,9 +40,20 @@ import { base } from 'astro:config/client';
       "panel panel";
 
     grid-template-columns: 2fr 3fr;
+    grid-template-rows: auto 1fr auto;
     max-width: 1200px;
+    column-gap: 32px;
 
     
+  }
+
+  .project.rightText {
+    grid-template-columns: 3fr 2fr;
+
+    grid-template-areas:
+      "image heading"
+      "image text"
+      "panel panel";
   }
 
   .project .heading {
@@ -53,7 +66,7 @@ import { base } from 'astro:config/client';
   }
   .project .panel {
     display: flex;
-    gap: 16px;
+    margin-top: 16px;
   }
 
   .project .info {
@@ -68,12 +81,31 @@ import { base } from 'astro:config/client';
     grid-area: image;
   }
 
-  .content {
+  .project .content {
     grid-area: text;
-    margin-right: 16px;
     line-height: 2;
   }
 
+  
+
+
+@media (max-width: 600px) {
+  .project {
+    display: flex;
+    flex-direction: column;
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .project .buttons {
+    flex-direction: column;
+  }
+
+  .project .panel {
+    justify-content: center;
+    margin-top: 16px;
+  }
+}
 
 
 

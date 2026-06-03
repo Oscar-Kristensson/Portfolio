@@ -46,9 +46,16 @@ section.centered {
   align-items: center;
 }
 
+section .capWidth {
+  max-width: 1200px;
+  line-height: 2;
+}
+
 @media (max-width: 600px) {
   section.bar {
     padding: 0;
+    padding-top: 64px;
+    padding-bottom: 64px;
 
   }
 
@@ -265,17 +272,21 @@ section.centered {
   z-index: 1;
 }
 
-.standard-button .icon {
+.standard-button.arrowIcon .icon {
   margin-left: 16px;
   transform: none;
   transition: all 250ms ease-in-out;
 }
 
-.standard-button.smallIcon .icon {
+.standard-button:not(.arrowIcon) .icon {
   width: 24px;
 }
 
-.standard-button:hover .icon {
+.standard-button .icon {
   margin-left: 16px;
+
+}
+
+.standard-button.arrowIcon:hover .icon {
   transform: translateX(10px);
 }

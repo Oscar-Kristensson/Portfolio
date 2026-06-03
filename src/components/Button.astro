@@ -1,10 +1,10 @@
 ---
 
-const { icon, link, smallIcon = false } = Astro.props;
+const { icon, link, arrowIcon = false } = Astro.props;
 
 
 ---
-<a href={link} class:list={["standard-button", { smallIcon: smallIcon }]}>
+<a href={link} class:list={["standard-button", { arrowIcon: arrowIcon }]}>
     <span class="content">
         <slot />
     </span>

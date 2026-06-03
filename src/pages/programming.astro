@@ -7,6 +7,8 @@ import Project from '../components/Project.astro';
 import Base from "../layouts/Base.astro"
 import Cards from '../components/Cards.astro';
 import { CardData } from '../logic/structs';
+import Timeline from '../components/Timeline.astro';
+
 
 function getCards(): CardData[] {
   return [
@@ -29,6 +31,43 @@ function getCards(): CardData[] {
   ];
 }
 
+const programmingTimeline = [
+  {
+    date: "ca 2017",
+    title: "Mitt första program",
+    description: 'Jag "skriver" mitt första prorgam i Scratch',
+  },
+  {
+    date: "ca 2019",
+    title: "Python",
+    description: "Jag börjar lära mig textbaserad programmering i Python",
+  },
+  {
+    date: "2022",
+    title: "Mitt första Pygame spel",
+    description: "Jag programmerar mitt första pygame spel för att kunna spela under Covid-19 pandemin.",
+  },
+  {
+    date: "2024",
+    title: "ChemistryCalculator",
+    description: "Jag programmerar ett verktyg för stökiometri, vilket är min första statiska hemsida.",
+  },
+  {
+    date: "2025",
+    title: "Ollama och API:s",
+    description: "Jag utvecklar en app som bygger på Ollama API:n",
+  },
+  {
+    date: "2025",
+    title: "C++ och Raylib",
+    description: "Jag tar steget till att utveckla spel i C++ med Raylib",
+  },
+  {
+    date: "2026",
+    title: "Databaser",
+    description: "Jag börjar utveckla ett program för att lagra information om aktier",
+  },
+];
 
 
 ---
@@ -47,7 +86,6 @@ function getCards(): CardData[] {
 
     <Project
       src={`${base}/pages/projects/chemistryCalculator.png`}
-      alt="Mountain landscape"
       heading='ChemistryCalculator'
       ghURL = "https://github.com/Oscar-Kristensson/ChemistryCalculator"
       previewURL='https://oscar-kristensson.github.io/ChemistryCalculator/'
@@ -69,6 +107,54 @@ function getCards(): CardData[] {
       </p>
     </Project>
 
+  </section>
+
+  <section class="bar centered">
+    <Project
+      src={`${base}/pages/projects/boardGame.png`}
+      heading='BoardGame'
+      ghURL = "https://github.com/Oscar-Kristensson/BoardGame"
+      rightText={true}
+
+    >
+      <p>
+        BoardGame är program där olika brädspel kan läggas in genom att konfigurera 
+        textfiler. Programmet är uppbyggt med C++ och Raylib med support för Windows, 
+        Mac och Linux tack vare att programmet är baserat på CMake. 
+      </p>
+    </Project>
+  </section>
+  <section class="bar centered">
+    <Project
+      src={`${base}/pages/projects/stockDB.png`}
+      heading='StockDB'
+      ghURL = "https://github.com/Oscar-Kristensson/StockDB"
+      rightText={false}
+
+    >
+      <p>
+        StockDB är ett program för att kunna lagra data om aktier och snabbt kunna 
+        överblicka dessa. Programmet är byggt med en hemsida byggd med HTML, CSS och 
+        Typescript samt ett interface till en SQLite databas i Rust med hjälp av 
+        rusqlite. Programmet är just nu under utveckling. Mer information om programmets 
+        uppbyggnad finns i /docs foldern på GitHub.
+      </p>
+      <p>
+        Målet med programmet är att snabbt kunna överblicka och identifiera köpvärda 
+        aktier baserad på långsiktiga fakta om företaget. 
+      </p>
+    </Project>
+  </section>
+
+
+  <section class="bar centered">
+    <h2>Min utveckling inom programmering</h2>
+    <p class="capWidth">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt ea illo inventore voluptas perferendis, dolores error eligendi tempora quia molestias, asperiores modi sed cupiditate facere, fuga corrupti aliquam minima quidem?
+    </p>
+
+    <Timeline items={programmingTimeline}/>
+    
   </section>
 
 </Base>
