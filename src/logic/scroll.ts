@@ -7,7 +7,8 @@ export class TouchScroller {
     constructor(
         private timeline: HTMLElement,
         private isDown: boolean = false,         
-        private startX: number = 0,         
+        private startX: number = 0,
+        private dragSpeed: number = 1,    
     ) {
         this.scrollLeft = this.timeline.scrollLeft;
 
@@ -43,7 +44,7 @@ export class TouchScroller {
         e.preventDefault();
 
         const x = e.pageX - this.timeline.offsetLeft;
-        const walk = (x - this.startX) * 1; // drag speed multiplier
+        const walk = (x - this.startX) * this.dragSpeed; // drag speed multiplier
 
         this.timeline.scrollLeft = this.scrollLeft - walk;
     } 

@@ -36,11 +36,11 @@ const { items } = Astro.props as Props;
 <style>
   .scroll-region-container {
     max-width: 100%;
-    overflow-y: auto;
+    overflow-x: hidden;
   }
   .scroll-container {
     /*height: 250px;            /* key: fixed or max height */
-    overflow-y: auto;         /* enables vertical scrolling */
+    overflow-y: hidden;         /* enables vertical scrolling */
     display: flex;
     flex-direction: row;
     gap: 64px;
@@ -118,7 +118,7 @@ const { items } = Astro.props as Props;
 
 </style>
 
-<script defer>
+<script type="module" defer>
  const cards = document.querySelectorAll(".card");
 
   const observer = new IntersectionObserver((entries) => {
@@ -132,4 +132,11 @@ const { items } = Astro.props as Props;
   });
 
   cards.forEach((card) => observer.observe(card));
+
+
+import { TouchScroller } from "./src/logic/scroll.ts";
+
+const scrollContainer = document.querySelector(".scroll-region-container");
+new TouchScroller(scrollContainer);
+
 </script>
