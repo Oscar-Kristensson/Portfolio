@@ -33,7 +33,7 @@ const sectionId = crypto.randomUUID();
   width: max-content;
   max-width: 100%;
   --height: 4px;
-  overflow-x: auto;
+  overflow-x: hidden;
 
 }
 
@@ -46,6 +46,13 @@ const sectionId = crypto.randomUUID();
 
 }
 
+.timeline .scroll-container {
+  scrollbar-width: none;
+}
+
+.timeline:hover .scroll-container {
+  scrollbar-width: auto;
+}
 
 .timeline-item {
   position: relative;
@@ -119,7 +126,9 @@ const sectionId = crypto.randomUUID();
 
 </style>
 
-<script defer define:vars={{ sectionId }}>
+<script type="module" defer define:vars={{ sectionId }}>
+import { TouchScroller } from "./src/logic/scroll.ts";
+
  const items = document.querySelectorAll(".timeline-item");
 
   const observer = new IntersectionObserver((entries) => {
@@ -134,4 +143,10 @@ const sectionId = crypto.randomUUID();
   });
 
   items.forEach((item) => observer.observe(item));
+
+
+const timeline = document.querySelector(".timeline")
+
+new TouchScroller(timeline);
+
 </script>

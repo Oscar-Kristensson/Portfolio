@@ -140,11 +140,11 @@ section .capWidth {
 
 
 /*
------------------- Scrollbar ------------------ 
+------------------  ------------------ 
 */
 /* Firefox */
 * {
-  scrollbar-width: thin;
+  scrollbar-width:auto;
   scrollbar-color: #6b7280 #111827;
 }
 
@@ -290,4 +290,9 @@ section .capWidth {
 
 .standard-button.arrowIcon:hover .icon {
   transform: translateX(10px);
+}
+
+
+.touchScroller {
+  cursor: grab;
 }
