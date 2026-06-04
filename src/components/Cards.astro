@@ -117,8 +117,10 @@ const { items } = Astro.props as Props;
 }
 
 </style>
+<script>
+// Import TouchScroller directly into the client bundle
+import { TouchScroller } from '../logic/scroll.ts';
 
-<script type="module" defer>
  const cards = document.querySelectorAll(".card");
 
   const observer = new IntersectionObserver((entries) => {
@@ -134,9 +136,10 @@ const { items } = Astro.props as Props;
   cards.forEach((card) => observer.observe(card));
 
 
-import { TouchScroller } from "./src/logic/scroll.ts";
 
 const scrollContainer = document.querySelector(".scroll-region-container");
-new TouchScroller(scrollContainer);
+if (scrollContainer && scrollContainer instanceof HTMLElement) {
+  new TouchScroller(scrollContainer);
+}
 
 </script>

@@ -1,7 +1,6 @@
 ---
 
 import type { TimelineItem } from "../logic/structs.ts";
-
 interface Props {
   items: TimelineItem[];
 }
@@ -10,7 +9,7 @@ const { items } = Astro.props;
 const sectionId = crypto.randomUUID();
 
 ---
-<div class="timeline">
+<div class="timeline" data-timeline-id={sectionId}>
   <div class="scroll-container">
   {items.map((item, index) => (
     <div class="timeline-item" style={`--delay: ${index * 120}ms`}>
@@ -127,27 +126,27 @@ const sectionId = crypto.randomUUID();
 
 </style>
 
-<script type="module" defer define:vars={{ sectionId }}>
-import { TouchScroller } from "./src/logic/scroll.ts";
+<script>
+// Import TouchScroller directly into the client bundle
+import { TouchScroller } from '../logic/scroll.ts';
 
- const items = document.querySelectorAll(".timeline-item");
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("show");
-        console.log("Show")
-      } else {
-        entry.target.classList.remove("show");
-      }
+    const items = document.querySelectorAll(".timeline-item");
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+        } else {
+            entry.target.classList.remove("show");
+        }
+        });
     });
-  });
-
-  items.forEach((item) => observer.observe(item));
-
-
-const timeline = document.querySelector(".timeline");
-
-new TouchScroller(timeline);
-
+    
+    items.forEach((item) => observer.observe(item));
+    
+    const timeline = document.querySelector(".timeline");
+    if (timeline && timeline instanceof HTMLElement) {
+        new TouchScroller(timeline);
+    } else {
+        console.error("Could not add TouchScroller to timeline!");
+    }
 </script>
