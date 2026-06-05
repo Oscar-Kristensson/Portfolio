@@ -1,0 +1,226 @@
+---
+import '../styles/global.css';
+
+import { base } from 'astro:config/client';
+import Project from '../components/Project.astro';
+
+import Base from "../layouts/Base.astro"
+import Cards from '../components/Cards.astro';
+import { CardData } from '../logic/structs';
+import Timeline from '../components/Timeline.astro';
+
+
+function getCards(): CardData[] {
+  return [
+    { title: "Vektorgrafik", items: [
+      { description: "Infografik främst inom naturvetenskap" }, 
+      { description: "Design av ikoner för exempelvis hemsidor" }, 
+    ] },
+    { title: "3D Modellering", items: [
+      { description: "3D Modellering i Blender" }, 
+      { description: "" }, 
+    ] },
+    { title: "Fotografering och videoredigering", items: [
+      { description: "Erfarenhet av fotografering" }, 
+      { description: "Grundläggande kunskap av tekniken bakom videor" }, 
+      { description: "" }, 
+    ] },
+  ];
+}
+
+const programmingTimeline = [
+  {
+    date: "ca 2017",
+    title: "Mitt första program",
+    description: 'Jag "skriver" mitt första program i Scratch',
+  },
+  {
+    date: "ca 2019",
+    title: "Python",
+    description: "Jag börjar lära mig textbaserad programmering med Python",
+  },
+  {
+    date: "2022",
+    title: "Mitt första Pygame spel",
+    description: "Jag programmerar mitt första Pygame-spel för att kunna spela under covid-19-pandemin.",
+  },
+  {
+    date: "2024",
+    title: "ChemistryCalculator",
+    description: "Jag programmerar ett verktyg för stökiometri, vilket är min första statiska hemsida.",
+  },
+  {
+    date: "2025",
+    title: "Ollama och API:s",
+    description: "Jag utvecklar en app som bygger på Ollama API:t",
+  },
+  {
+    date: "2025",
+    title: "C++ och Raylib",
+    description: "Jag tar steget till att utveckla spel i C++ med Raylib",
+  },
+  {
+    date: "2026",
+    title: "Databaser",
+    description: "Jag utvecklar StockDB för att lagra information om aktier i en SQL-databas",
+  },
+];
+
+
+---
+
+
+
+
+<Base title="Home">
+  <section class="bar centered">
+    <h2>Mina kunskaper inom digitalt skapande</h2>
+    <Cards items={getCards()} />
+  </section>
+
+  <section class="bar centered">
+    <h2>Mina projekt</h2>
+
+    <Project
+      src={`${base}/pages/projects/bakterieOVirus.webp`}
+      heading='Virus som gör bakterier "sjuka"'
+
+    >
+      <p>
+        Bilden föreställer en bakterie som blir attackerad av bakteriofager, en 
+        typ av virus som angriper baktierier. 
+      </p>
+      <p>
+        Bilden är gjord i Blender för 
+        anteckningar i kursen Biologi 2 och illustrerar olika patogener. 
+      </p>
+    </Project>
+
+  </section>
+
+  <section class="bar centered">
+    <Project
+      src={`${base}/pages/projects/lungor.png`}
+      heading='Luftens väg genom lungorna'
+      rightText={true}
+
+    >
+      <p>
+        Bilden föreställer andningsorganen som kroppen använder för att syresätta blodet. 
+        För att kunna andas drar diafragmat, muskeln under bröstkorgen, ihop sig och drar in 
+        syrerik luft i lungorna genom luftstrupen.
+      </p>
+      <p>
+        Bilden är gjord med 3D-modellering i Blender för anteckningar i kursen Biologi 2.
+      </p>
+    </Project>
+  </section>
+  <section class="bar centered">
+    <Project
+      src={`${base}/pages/projects/elektronBombardemang.svg`}
+      heading='Hur röntgenstrålning genereras'
+      rightText={false}
+
+    >
+      <p>
+        Bilden illustrerar hur en atom kan exciteras, alltså sättas i ett högre energitillstånd, 
+        genom att bombardera atomen med energirika elektroner. På detta sätt genereras röntgenstrålningen 
+        som används vid exempelvis röntgenundersökningar. 
+      </p>
+      <p>
+        Bilden ritades för anteckningar i kursen Fysik 2 och är baserad på vektorgrafik. 
+      </p>
+    </Project>
+  </section>
+  <section class="bar centered">
+    <Project
+      src={`${base}/pages/projects/schackAnfall.png`}
+      heading='Ett anfall i schack'
+      rightText={true}
+
+    >
+      <p>
+        Bilden illustrerar hur ett anfall byggs upp i schack där pjäser såväl garderar, försvarar 
+        varandra, som attackerar motståndaren.
+        
+         
+      </p>
+      <p>
+        Bilden gjordes i Blender för en presentation om skillnaderna mellan hur människor och 
+        datorer traditionelt spelar schack samt hur neurala nätverk, eller mer vardagligt AI, 
+        påverkar både människans och datorers schackspelande. 
+      </p>
+    </Project>
+  </section>
+  <section class="bar centered">
+    <Project
+      src={`${base}/pages/projects/prisonersDilemma.svg`}
+      heading='Matematiken bakom krig och fred'
+      rightText={false}
+
+    >
+      <p>
+        Bilden illustrerar det kända tankeexperimentet "Prisoner's dilemma" inom matematiken där 
+        två spelare ställs inför valet att samarbeta.
+      </p>
+      <p>
+        Bilden är gjord med vektorgrafik för en presentation om "Prisoner's dilemma" och hur vi 
+        bör agera för att skapa en miljö där samarbete lönar sig. 
+      </p>
+    </Project>
+  </section>
+  <section class="bar centered">
+    <Project
+      src={`${base}/pages/projects/gamma.webp`}
+      heading='Solnedgång i skärgården'
+      rightText={true}
+
+    >
+      <p>
+        Den här bilden är del av ett födelsedagskort med temat segling och skärgård.
+      </p>
+      <p>
+        Bilden gjord med 3D-modellering i Blender.
+      </p>
+    </Project>
+  </section>
+  <section class="bar centered">
+    <Project
+      src={`${base}/pages/projects/ga.png`}
+      heading='Schematisk testuppställning'
+      rightText={false}
+
+    >
+      <p>
+        Den här bilden är en 3D-illustration av en testuppställning som användes i 
+        ett gymnasiearbete för att mäta luftmotstånd med hjälp av en våg.
+      </p>
+      <p>
+        Bilden gjord med 3D-modellering i Blender.
+      </p>
+    </Project>
+  </section>
+  <section class="bar centered">
+    <Project
+      src={`${base}/pages/projects/concorde.svg`}
+      heading='Världens snabbaste passagerarplan'
+      rightText={true}
+
+    >
+      <p>
+        Concorde är ett överljudspassagerarplan som kan flyga i dubbla ljudhastigheten, 
+        vilket gör att en flygning mellan London och New York endast tar 3 och en halv timme.
+        Planet, som var före sin tid, gjorde sin jungfruflygning 1969 och sedan dess 
+        har inget nytt passagerarplan brutit ljudvallen. 
+
+      </p>
+      <p>
+        Bilden gjord med vektorgrafik för att illustrera relativistiska hastigheter i 
+        Fysik 2 anteckningarna.
+      </p>
+    </Project>
+  </section>
+
+
+
+</Base>

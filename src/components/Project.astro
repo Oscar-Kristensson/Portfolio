@@ -2,7 +2,7 @@
 interface Props {
   src: string;
   heading: string;
-  ghURL: string,
+  ghURL?: string,
   previewURL?: string,
   rightText?: boolean,
 }
@@ -24,7 +24,7 @@ import { base } from 'astro:config/client';
 
   <div class="panel">
     <div class="buttons">
-      <Button icon={base + "/vendor/ghLogo.svg"} link={ghURL} >Se på GitHub</Button>
+      {ghURL && <Button icon={base + "/vendor/ghLogo.svg"} link={ghURL} >Se på GitHub</Button>}
       {previewURL && <Button icon={base + "/arrow.svg"} link={previewURL} arrowIcon={true}>Testa här</Button>}
     </div>
   </div>

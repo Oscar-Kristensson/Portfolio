@@ -1,17 +1,31 @@
 ---
 import { base } from 'astro:config/client';
 
+const { pathname } = Astro.url;
+const currentPath = pathname.replace(/\/$/, "");
+const homePath = base.replace(/\/$/, "");
+
+const items = [
+// Name           Path          
+[ "Hem",          `${base}`, `public/home.svg`],
+[ "Programmering",`${base}/programming`],
+[ "Digitalt skapande",`${base}/creative`],
+]
 ---
 <nav class="nav-bar">
-  <a href={base}>Hem</a>
-  <a href={base + "/programming"}>Programmering</a>
-  <a href="/blog/">Blog</a>
+  {items.map((item) => (
+    <a href={item[1]} class:list={["project", { active: currentPath === item[1] }]} >
+      {item.length > 2 && <img src={item[2]} alt="" class="icon" />}
+      {item[0]}
+    </a>
+  ))}
 </nav>
 
 <style>
   .nav-bar {
     display: flex;
     padding: 16px;
+    padding-bottom: 8px;
     background-color: rgb(39, 39, 39);
     gap: 16px;
     justify-content: flex-end;
@@ -23,9 +37,28 @@ import { base } from 'astro:config/client';
     right: 0;
   }
 
-  .nav-bar a {
-    color: var(--color-text-lowEmp)
+  .nav-bar > a {
+    color: var(--color-text-lowEmp);
+    display: flex;
+    align-items: center;
+    margin-right: 16px;
+    text-decoration: none;
+    padding-bottom: 6px;
+    padding-left: 4px;
+    padding-right: 4px;
+    border-bottom: 2px solid;
+    border-color: transparent;
+
   }
+  .nav-bar > a.active {
+    border-color: var(--color-accent1);
+  }
+
+  .nav-bar > a > .icon {
+    margin-right: 8px;
+    height: 24px;
+  }
+  
 </style>
 
 
