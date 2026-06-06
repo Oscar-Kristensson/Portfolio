@@ -1,0 +1,77 @@
+---
+const sectionId = crypto.randomUUID();
+const { heading } = Astro.props;
+
+
+---
+<section class="header">
+    <h1 class="gradientText">{heading}</h1>
+    <p class="description">
+        <slot />
+    </p>
+
+</section>
+
+<style>
+    
+
+.header {
+  height: 60vh;
+  background-color: #0a0a0a;
+  display: flex;
+  color: white;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.header h1 {
+    grid-area: main;
+    width: fit-content;
+    margin-bottom: 4px;
+
+
+
+    display: inline-block;
+    opacity: 0;
+}
+
+
+
+.header.show h1 {
+    animation: glideInTextLeft 800ms ease-in forwards;
+    animation-delay: 0ms;
+}
+
+.header.show .description {
+    animation: glideInTextLeft 800ms ease-in forwards;
+    animation-delay: 600ms;
+}
+
+
+.header .description {
+    max-width: 800px;
+    line-height: 2;
+    opacity: 0;
+}
+
+
+
+</style>
+<script defer define:vars={{ sectionId }}>
+  const section = document.querySelector("section");
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+      } else {
+        entry.target.classList.remove("show");
+      }
+    })
+  });
+
+  observer.observe(section);
+
+
+</script>

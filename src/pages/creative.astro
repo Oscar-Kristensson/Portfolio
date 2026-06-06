@@ -8,6 +8,7 @@ import Base from "../layouts/Base.astro"
 import Cards from '../components/Cards.astro';
 import { CardData } from '../logic/structs';
 import Timeline from '../components/Timeline.astro';
+import Header from '../components/Header.astro';
 
 
 function getCards(): CardData[] {
@@ -18,12 +19,10 @@ function getCards(): CardData[] {
     ] },
     { title: "3D Modellering", items: [
       { description: "3D Modellering i Blender" }, 
-      { description: "" }, 
     ] },
     { title: "Fotografering och videoredigering", items: [
       { description: "Erfarenhet av fotografering" }, 
       { description: "Grundläggande kunskap av tekniken bakom videor" }, 
-      { description: "" }, 
     ] },
   ];
 }
@@ -71,8 +70,14 @@ const programmingTimeline = [
 
 
 
-
 <Base title="Home">
+  <Header heading="Digitalt skapande">
+    När jag inte programmerar eller studerar arbetar jag sannolikt med digitalt skapande. 
+    Jag använder mig även av dessa kunskaper när jag antecknar och bearbetar lektionsinnehåll.
+    Nedan hittar du både mina färdigheter samt beskrivningar och information om mina favoritprojekt där dessa tillämpas. Skrolla runt och läs på
+    om dem som du anser är intressad av då tekniker och stilar varierar mellan projekten!
+  </Header>
+
   <section class="bar centered">
     <h2>Mina kunskaper inom digitalt skapande</h2>
     <Cards items={getCards()} />
@@ -205,14 +210,12 @@ const programmingTimeline = [
       src={`${base}/pages/projects/concorde.svg`}
       heading='Världens snabbaste passagerarplan'
       rightText={true}
-
     >
       <p>
         Concorde är ett överljudspassagerarplan som kan flyga i dubbla ljudhastigheten, 
         vilket gör att en flygning mellan London och New York endast tar 3 och en halv timme.
         Planet, som var före sin tid, gjorde sin jungfruflygning 1969 och sedan dess 
         har inget nytt passagerarplan brutit ljudvallen. 
-
       </p>
       <p>
         Bilden gjord med vektorgrafik för att illustrera relativistiska hastigheter i 

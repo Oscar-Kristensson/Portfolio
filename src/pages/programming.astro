@@ -8,6 +8,7 @@ import Base from "../layouts/Base.astro"
 import Cards from '../components/Cards.astro';
 import { CardData } from '../logic/structs';
 import Timeline from '../components/Timeline.astro';
+import Header from '../components/Header.astro';
 
 
 function getCards(): CardData[] {
@@ -76,6 +77,13 @@ const programmingTimeline = [
 
 
 <Base title="Home">
+  <Header heading="Programmering">
+    Jag har alltid varit både intresserad och faschinerad av teknik, där programmering 
+    är mitt sätt att utveckla och lära mig om teknik. Det bästa med programmering är att 
+    utveckla idéer, förverkliga dem och samtidigt lära sig något nytt. Nedan hittar du mina 
+    färdigheter inom programmering samt projekt där dessa tillämpas. 
+  </Header>
+
   <section class="bar centered">
     <h2>Mina programmeringskunskaper</h2>
     <Cards items={getCards()} />
